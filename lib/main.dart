@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:chat_app/core/service/database_service.dart';
+import 'package:chat_app/core/service/kotlin_service.dart';
 import 'package:chat_app/core/service/notification_service.dart';
 import 'package:chat_app/core/utils/route_utils.dart';
 import 'package:chat_app/ui/screens/other/user_provider.dart';
@@ -18,6 +21,8 @@ void main()async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
+ int battery = await BatteryService.getBatteryLevel();
+  log("Battery level: $battery%");
   await NotificationService.instance.initialize();
   
   runApp(const ChatApp());
